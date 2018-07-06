@@ -1,0 +1,12 @@
+{
+    "id":"string -- universally unique",
+    "images":["string-url","..."],
+    "name-short":"1 4 word string",
+    "name-long":" upto 15 word string",
+    "description":"string paragraph",
+    "price":{
+        "currency":"Rs.",
+        "rate":"number",
+        "unit":"per Kg,per Item(as applicable).. managed by server"
+    }
+}
