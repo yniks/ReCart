@@ -157,8 +157,8 @@ var items={
     console.log('requested',self.e=event);
    var handle= async function(){
         var url=new URL(event.request.url)
-        console.log(event.request.url.search('SERVERLESS'))
-        if(event.request.url.search('SERVERLESS')==-1)return fetch(event.request)
+        console.log(event.request.url.search('1234'))
+        if(event.request.url.search('1234')==-1)return fetch(event.request)
         var params=url.searchParams
         var obj={}
         for(let param of params.entries())
@@ -175,5 +175,5 @@ self.addEventListener('install', function(event) {
     
 })
 console.log('done')
-
+self.skipWaiting()
 self.addEventListener('fetch',request)

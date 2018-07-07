@@ -1,7 +1,7 @@
 
 async function init()
 {
-   window.resp=await request("./SERVERLESS")
+   window.resp=await request("./1234")
     resp=await resp.json();
     
     window.listView=document.createElement('div');
