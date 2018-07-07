@@ -45,6 +45,7 @@
 	else navigator.serviceWorker.register('./sw.js');
 	async function start()
 	{
+		 window.request=fetch
 		var ini=await init()
 		console.log(await ini)
 			
