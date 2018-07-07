@@ -85,7 +85,7 @@ async function init()
       <div class="col-md-4">
       </div>
       <div class="col-md-4 caption">
-				<img src="../images/greenlogo.png" class="img_logo">
+				<img src="./images/greenlogo.png" class="img_logo">
 				ReCart
         <br>
         <p id="sub_cap">Waste to Industry</p>
