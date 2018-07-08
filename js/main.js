@@ -111,7 +111,7 @@ async function init()
             <li class="active"><a href="">Home</a></li>
 						<li><a href="#">Services</a></li>
 						<li><a href="#">Re-Agents</a></li>
-						<li><a href="#">About Us</a></li>
+						<li><a href="#about">About Us</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="./signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

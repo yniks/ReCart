@@ -1,0 +1,176 @@
+<style>
+    @keyframes rotate-forever
+    {
+        from
+        {
+            transform: rotate(0deg);
+        }
+        to
+        {
+            transform: rotate(360deg);
+        }
+    }
+
+    .system
+    {
+        display: inline-grid;
+        grid-template-columns: repeat(3, 250px);
+        grid-template-rows: repeat(3, 250px);
+        animation-name: rotate-forever;
+        animation-duration: 60s;
+         animation-timing-function: linear;
+         transform-origin: 50% 50%;
+        animation-iteration-count: infinite;
+        animation-direction: reverse;
+        width: 750px;
+        height: 750px;
+    }
+    .rot-sys:nth-child(even)
+    {
+        background-color: transparent
+    }
+    .rot-sys .name
+    {
+        color: white;
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        bottom: 10px;
+        font-size: 200%;
+        background:rgba(1, 158, 1, 0.59); 
+    }
+    .rot-sys img
+    {
+        width:100%;
+        height: 100%;
+        background-image: url(../images/not_available.jpg);
+        background-size: cover;
+
+    }
+    .rot-sys
+    {
+        width: 250px;
+        transform-origin: 50% 50%;
+        height: 250px;
+        animation-name: rotate-forever;
+        animation-iteration-count: infinite;
+        animation-duration: 60s;
+        animation-direction: normal;
+        animation-timing-function: linear;
+        background-color: blue;
+        border-radius: 500%;
+        overflow: hidden;
+    }
+    .main
+    {   display: grid;
+        justify-content: center;
+        align-content: center;
+    }
+    body
+    {
+        display: flex;
+        font-family: sans-serif;
+        margin: 0px
+    }
+    .about
+    {
+        background-color: rgba(1, 158, 1, 0.59); 
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        color:white;
+        padding: 60px;
+    box-sizing: border-box;
+    }
+    .rot-sys#centre
+    {
+        color: white;
+        display: inline-grid;
+        align-content: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        bottom: 10px;
+        font-size: 200%;
+        background-color:rgba(1, 158, 1, 0.59); 
+    }
+    #backlayer
+    {
+        z-index:-1;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        filter:blur(3px);
+        background: url(../images/download.jpeg)
+    }
+    </style>
+    <div id=backlayer ></div>
+    <div class=main>
+     
+    <div class=system>
+       
+<div class=rot-sys >
+    <span>
+        <div><img src=' '></div>
+        <div class=name>Swapnil</div>
+        </span>
+</div>
+<div class=rot-sys ></div>
+<div class=rot-sys ><span>
+        <div><img src=' '></div>
+        <div class=name>Ehraz</div>
+        </span></div>
+<div class=rot-sys >
+</div>
+<div class=rot-sys id=centre><h1>Team</h1></div>
+<div class=rot-sys ></div>
+<div class=rot-sys ><span>
+        <div><img src=' '></div>
+        <div class=name>Nikhilesh</div>
+        </span></div>
+<div class=rot-sys ></div>
+<div class=rot-sys ><span>
+        <div><img src=' '></div>
+        <div class=name>Priyanshu</div>
+        </span></div>
+</div>
+
+</div>
+<div class=about>
+        <h1>ReCart</h1>
+<p>A green Initiative intended to smoothen Home to Industry journey of Waste As a nation, we are not handling our domestic waste output intelligently. There is not much focus on maintaining home to industry flow of produce/Waste.We don't channelise our useful domestic 'produce' to the right industry. Most of waste can be utilised in one way or the other.</p>
+
+<p>The solution is to establish the proper communication channel between Industry which need Waste Produce and to people who are the producers.Our Idea is to swiftly connect these people with our Techno-cum-management and monetised (of course ) system. System will comprise of a website/app powered by a database of Industry (Industry means whoever in need) requirements , and a local on-ground system of "collection agents" fueled by money and their social responsibility.</p>
+
+<p>App will comprise of two databases. One will be feeded by the materials required by the Industry and other with Domestic Waste and Scrap items which corresponds to required materials for the Industry.</p>
+    </div>
+    
+    <script>
+            var about=document.getElementsByClassName('about')[0];
+             var system=document.getElementsByClassName('system')[0];
+             var main=document.getElementsByClassName('main')[0];
+            onresize=function(e)
+            {
+                var min=innerHeight>innerWidth?innerWidth:innerHeight;
+                let zoom=min/750
+                system.style.zoom=zoom*0.6;
+                if(innerWidth/innerHeight<=1.5)
+                {
+                    about.style.width='100%';
+                    main.style.width='100%';
+                    about.style.marginTop="50px";
+                    document.body.style.flexDirection='column'
+                }
+                else
+                {   
+                    document.body.style.flexDirection='row'
+                    about.style.marginTop="0px";
+                    main.style.height='100%';
+                    console.log(innerWidth/2+'px')
+                    about.style.width=innerWidth/2+'px';
+                    main.style.width=innerWidth/2+'px';
+                }
+            }
+            onresize()
+    </script>`
