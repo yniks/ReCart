@@ -154,18 +154,20 @@ var items={
 }
  function request(event)
 {
-   // console.log('requested',self.e=event);
+   console.log('requested',event.request.url);
    var handle= async function(){
         var url=new URL(event.request.url)
      //   console.log(event.request.url.search('1234'))
         if(event.request.url.search('1234')==-1)return  caches.open('re-cart').then(function(cache) {
             console.log(cache)
             return cache.match(event.request).then(function (response) {
-              return response || fetch(event.request).then(function(response) {
+                console.log('cache response',response)
+                var r=response? response:fetch(event.request).then(function(response) {
                   console.log('got from server')
                 cache.put(event.request, response.clone());
                 return response;
-              });
+              }).catch(e=>console.log('falded to fetch'));
+              return r;
             });
           })
         var params=url.searchParams
@@ -179,27 +181,32 @@ var items={
     }
     event.waitUntil(handle())
 }
-self.addEventListener('activate', function(event) {
+self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('re-cart').then(function(cache) {
       return cache.addAll(
         [
             './images/download.jpeg',
             './images/p.jpeg',
-            './images/s.jpeg',
-            './images/e.jpeg',
-            './images/me.jpeg',
+            './images/s.jpg',
+            './images/e.jpg',
+            './images/glogo.jpg',
+            './images/greenlogo.png',
+            './images/logo.jpg',
             './images/not_available.jpg',
             './css/main.css',
             './css/secondary.css',
             './css/style.css',
             './js/jquery-3.3.1.min.js',
             './js/main.js',
-            './index.html'
+            './pages/about.html','./index.html'
         ]
-      );
+      ).then(e=>console.log('caching successfull'));
     })
   );
 });
+  self.addEventListener('activate', function(event) {
+    event.waitUntil(self.clients.claim());
+  });
 self.skipWaiting()
 self.addEventListener('fetch',request)
