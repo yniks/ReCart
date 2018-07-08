@@ -154,26 +154,52 @@ var items={
 }
  function request(event)
 {
-    console.log('requested',self.e=event);
+   // console.log('requested',self.e=event);
    var handle= async function(){
         var url=new URL(event.request.url)
-        console.log(event.request.url.search('1234'))
-        if(event.request.url.search('1234')==-1)return fetch(event.request)
+     //   console.log(event.request.url.search('1234'))
+        if(event.request.url.search('1234')==-1)return  caches.open('re-cart').then(function(cache) {
+            console.log(cache)
+            return cache.match(event.request).then(function (response) {
+              return response || fetch(event.request).then(function(response) {
+                  console.log('got from server')
+                cache.put(event.request, response.clone());
+                return response;
+              });
+            });
+          })
         var params=url.searchParams
         var obj={}
         for(let param of params.entries())
         {
             obj[param[0]]=param[1]
         }
-        console.log(obj)
+       // console.log(obj)
         event.respondWith(new Response(JSON.stringify(getitem(obj))))
     }
     event.waitUntil(handle())
 }
-self.addEventListener('install', function(event) {
-    console.log("install");
-    
-})
-console.log('done')
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.open('re-cart').then(function(cache) {
+      return cache.addAll(
+        [
+            './images/download.jpeg',
+            './images/p.jpeg',
+            './images/s.jpeg',
+            './images/e.jpeg',
+            './images/me.jpeg',
+            './images/not_available.jpg',
+            './css/main.css',
+            './css/secondary.css',
+            './css/style.css',
+            './js/jquery-3.3.1.min.js',
+            './js/main.js',
+            './index.html'
+        ]
+      );
+    })
+  );
+});
 self.skipWaiting()
 self.addEventListener('fetch',request)
