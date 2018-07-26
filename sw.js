@@ -166,7 +166,7 @@ var items={
                   console.log('got from server')
                 cache.put(event.request, response.clone());
                 return response;
-              }).catch(e=>console.log('falded to fetch');
+              }).catch(e=>console.log('falded to fetch' ));
               return r;
             });
           })
