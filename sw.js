@@ -201,7 +201,7 @@ self.addEventListener('install', function(event) {
             './js/main.js',
             './pages/about.html','./index.html'
         ]
-      ).then(e=>console.log('caching successfull'));
+      ).then(e=>console.log('caching successfull')).catch(e=>console.log(e));
     })
   );
 });
