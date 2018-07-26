@@ -5,7 +5,7 @@ html
 #popupWindow
 {
     position: fixed;
-   background: url(images/loader.svg) rgba(51, 90, 51, 0.73);
+   background: url(../images/loader.svg) rgba(51, 90, 51, 0.73);
    background-repeat: no-repeat;
    background-position: center;
    
