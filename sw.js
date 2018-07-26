@@ -25,14 +25,16 @@ function avgPrice(list)
         }
     });
     var net=0
+    var num=0;
     for(let each of prices)
-    {
+    {   num++
         var num=Number(each)
         if(Number.isFinite(num))
         {
             net+=num
         }
     }
+    net/num?net=net/num:net=0
     return `INR ${net}`
 }
 function getByCore(resp,core)
