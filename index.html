@@ -44,7 +44,12 @@
 	else navigator.serviceWorker.register('./sw.js');
 	async function start()
 	{
-		 window.request=fetch
+         window.request=async function(req)
+         {
+             var res=await fetch(req)
+             if(req.search!=-1)res=res.json()
+             return res
+         }
 		var ini=await init()
 		console.log(await ini)
 			
@@ -55,8 +60,10 @@
 			{
 				case "#listView":listView.set();break;
 				case "#detailView":detailView.set();break;
+				case "#loader":loader.set();break;
 				case "#about":document.location='./pages/about.html';break;
-				 default:main()
+                case "#search":showSearched(new URL(document.location.href).searchParams.get('search'));break;
+				 default:document.location.hash='loader'
 			}
 		}
 		window.onhashchange=function(e)
@@ -75,7 +82,19 @@
 
 </html>
 <script>
-	
+    var resetView=function()
+    {
+        try{
+           if(listView.shown) listView.unset();
+           if(detailView.shown)detailView.unset();
+           if(loader.shown)loader.unset();
+         //  if(!(listView.shown||detailView.shown||loader.shown))
+        }
+        catch(e)
+        {
+
+        }
+    }
 	var mainPage=`
 	<div class="split left">
 		  <div class="centered">

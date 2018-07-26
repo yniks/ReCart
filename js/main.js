@@ -1,9 +1,39 @@
-
+async function timer(ms)
+{
+  return new Promise((res,rej)=>
+  {
+      setTimeout(() => {
+          res()
+      }, ms);
+  })
+}
+async function showSearched(value)
+{
+  
+    resetView();
+    console.log(value)
+    document.location.hash='loader'
+    resp=await request('./1234?search='+value);
+    //await timer(1)
+    document.location.hash='listView'
+}
 async function init()
 {
    window.resp=await request("./1234")
-    resp=await resp.json();
-    
+   window.loader=document.createElement('div');
+   loader.setAttribute('style',`margin: auto;width: 100px;height: 100px;`);
+   loader.innerHTML=`<img src="images/loader.svg"> `
+    loader.set=async function()
+    {
+      resetView();
+      loader.shown=true;
+      document.body.appendChild(loader);
+    }
+    loader.unset=async function()
+    {
+      loader.remove()
+      loader.shown=false;
+    }
     window.listView=document.createElement('div');
     listView.setAttribute('class',"polaroid-images container");
     listView.br1=document.createElement('br')
@@ -24,7 +54,8 @@ async function init()
             a.innerHTML=`<img class="polaroid-images" src=\"`+(each.image||'./images/not_available.jpg')+`\" alt=\"`+each.name+`\">`
             listView.appendChild(a)
         }
-        detailView.unset()
+        resetView()
+        listView.shown=true;
         document.body.appendChild(listView.br1)
         document.body.appendChild(listView.br2)
         document.body.appendChild(listView)
@@ -32,6 +63,7 @@ async function init()
     listView.unset=function()
     { 
         try{
+        listView.shown=false;
         document.body.removeChild(listView.br1)
         document.body.removeChild(listView.br2)
         document.body.removeChild(listView)
@@ -70,12 +102,16 @@ async function init()
     `
     detailView.setAttribute('class','items_info container')
     detailView.setAttribute('style',"width: 100%;text-align: center;")
-    listView.unset()
+    resetView();
+    
+    detailView.shown=true;
     document.body.appendChild(detailView)
     }
     detailView.unset=function()
     {
         try{
+          
+          detailView.shown=false;
         document.body.removeChild(detailView);
         }catch(r){}
     }
@@ -92,8 +128,8 @@ async function init()
       </div>
 
       <div class="col-md-4">
-        <button class="btn button"><i class="fa fa-search"></i></button>
-        <input id="srch" class="form-control mr-sm-2" type="Search" placeholder="SEARCH" aria-label="search">
+        <button class="btn button" onclick=document.querySelector('#srch').onsubmit() ><i class="fa fa-search"></i></button>
+        <input id="srch" class="form-control mr-sm-2" type="Search" placeholder="SEARCH" onsubmit='showSearched(this.value)'  aria-label="search">
       </div>
     </div>
     <nav class="navbar navbar-inverse">

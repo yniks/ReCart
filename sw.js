@@ -178,7 +178,7 @@ var items={
         {
             obj[param[0]]=param[1]
         }
-       // console.log(obj)
+        console.log('hereee',obj)
         event.respondWith(new Response(JSON.stringify(getitem(obj))))
     }
     event.waitUntil(handle())
