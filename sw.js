@@ -193,7 +193,7 @@ self.addEventListener('install', function(event) {
             './images/glogo.jpg',
             './images/greenlogo.png',
             './images/logo.jpg',
-            '.images/not_available.jpg',
+            './images/not_available.jpg',
             './css/main.css',
             './css/secondary.css',
             './css/style.css',

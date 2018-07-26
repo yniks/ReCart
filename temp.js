@@ -15,7 +15,7 @@ for(let each in all)
     {
         console.log(e)
         console.log(`${each}:  file for ${name} does not exists.   path:${marg}`);   
-        all[each].image='/images/not_available.jpg';
+        all[each].image='images/not_available.jpg';
     }
     console.log(marg)
 }
