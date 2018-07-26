@@ -6,7 +6,7 @@ for(let each in all)
     let name=all[each].name;
     let marg=path.join(__dirname,'images/'+name+'.jpg')
     try{
-        //console.log(fs.statSync(marg));
+        console.log(fs.statSync(marg));
         console.log(`${each}:file for ${name} exists.   path:${marg}`)
         all[each].image='images/'+name+'.jpg'
 
