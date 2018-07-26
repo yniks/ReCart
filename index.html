@@ -38,8 +38,16 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
+</html>
+<body>
+    <div id=mainBox>
+        </div>
+</body>
+
+</html>
 <script src='./js/main.js'></script>
 <script>
+      window.mainBox=document.querySelector('#mainBox');
 	if(!navigator)alert('non Supported Browser!')
 	else navigator.serviceWorker.register('./sw.js');
 	async function start()
@@ -61,6 +69,7 @@
 				case "#listView":listView.set();break;
 				case "#detailView":detailView.set();break;
 				case "#loader":loader.set();break;
+				case "#popup":popup.set(window.popupPath);break;
 				case "#about":document.location='./pages/about.html';break;
                 case "#search":showSearched(new URL(document.location.href).searchParams.get('search'));break;
 				 default:document.location.hash='loader'
@@ -76,16 +85,12 @@
 		console.log('initialized')
 }
 	</script>
-</html>
-<body>
-</body>
-
-</html>
 <script>
     var resetView=function()
     {
         try{
            if(listView.shown) listView.unset();
+           if(popup.shown) popup.unset();
            if(detailView.shown)detailView.unset();
            if(loader.shown)loader.unset();
          //  if(!(listView.shown||detailView.shown||loader.shown))
@@ -112,12 +117,12 @@
 `
 function main()
 {
-	document.body.innerHTML=mainPage
+	mainBox.innerHTML=mainPage
 }
 main()
 function about()
 {
-	document.body.innerHTML=aboutPage
+	mainBox.innerHTML=aboutPage
 }
 var aboutPage=`<style>
     @keyframes rotate-forever

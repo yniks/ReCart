@@ -1,3 +1,7 @@
+async function showPop()
+{
+
+}
 async function timer(s)
 {
   return new Promise((res,rej)=>
@@ -19,7 +23,60 @@ async function showSearched(value)
 }
 async function init()
 {
-   window.resp=await request("./1234")
+   window.resp=await request("./1234");
+   window.mainBox=document.querySelector('#mainBox');
+   window.popup=document.createElement('div');
+  window.resize=document.createElement('span');
+      resize.id='popupWindowResize';
+      resize.innerHTML='_';
+      resize.maxi=function()
+      {
+        popup.setAttribute('class','maximize');
+        resize.maximum=true;
+      }
+      resize.mini=function()
+      {
+        popup.setAttribute('class','minimize');
+        resize.maximum=false;
+      }
+      resize.switch=function()
+      {
+        if(resize.maximum)resize.mini()
+        else resize.maxi();
+      }
+      resize.mini()
+      resize.onclick=resize.switch;
+      cross=document.createElement('span');
+        cross.id='popupWindowCross';
+        cross.innerHTML='X';
+        popup.appendChild(cross)
+        popup.appendChild(resize)
+      iframe=document.createElement('iframe');
+      iframe.id='popupIframe'
+      popup.appendChild(iframe)
+   popup.id='popupWindow'
+   //popup.setAttribute('styl);
+   popup.set=async function(src)
+   {
+     popup.shown=true
+      iframe.src=src;
+      mainBox.style.filter='blur(3px)';
+      let fn=mainBox.onclick
+      mainBox.onclick=function()
+      {
+        popup.onclick();
+        mainBox.onclick=fn;
+      }
+      document.body.appendChild(popup);
+   }
+   popup.unset=async function()
+   {
+    popup.shown=false
+     popup.remove();
+     mainBox.style.filter=''
+   }
+   
+   cross.onclick=()=>{history.back()}
    window.loader=document.createElement('div');
    loader.setAttribute('style',`margin: auto;width: 100px;height: 100px;`);
    loader.innerHTML=`<img src="images/loader.svg"> `
@@ -27,7 +84,7 @@ async function init()
     {
       resetView();
       loader.shown=true;
-      document.body.appendChild(loader);
+      mainBox.appendChild(loader);
     }
     loader.unset=async function()
     {
@@ -56,17 +113,17 @@ async function init()
         }
         resetView()
         listView.shown=true;
-        document.body.appendChild(listView.br1)
-        document.body.appendChild(listView.br2)
-        document.body.appendChild(listView)
+        mainBox.appendChild(listView.br1)
+        mainBox.appendChild(listView.br2)
+        mainBox.appendChild(listView)
     }
     listView.unset=function()
     { 
         try{
         listView.shown=false;
-        document.body.removeChild(listView.br1)
-        document.body.removeChild(listView.br2)
-        document.body.removeChild(listView)
+        mainBox.removeChild(listView.br1)
+        mainBox.removeChild(listView.br2)
+        mainBox.removeChild(listView)
         }catch(e){}
     }
     window.detailView=document.createElement('div');
@@ -88,7 +145,7 @@ async function init()
                 <a class="navbar-brand" href="#">Product Info</a>
               </div>
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">About</a></li>
+                <li class="active"><a  onclick="window.popupPath='pages/form.html';document.location.hash='popup'" >About</a></li>
                 <li><a href="#">Pricing</a></li>
                 <li><a href="#">Agents</a></li>
                 <li><a href="#">Locality</a></li>
@@ -105,17 +162,17 @@ async function init()
     resetView();
     
     detailView.shown=true;
-    document.body.appendChild(detailView)
+    mainBox.appendChild(detailView)
     }
     detailView.unset=function()
     {
         try{
           
           detailView.shown=false;
-        document.body.removeChild(detailView);
+        mainBox.removeChild(detailView);
         }catch(r){}
     }
-    document.body.innerHTML=`
+    mainBox.innerHTML=`
     <div class="row header">
 
       <div class="col-md-4">
@@ -147,11 +204,11 @@ async function init()
             <li class="active"><a href="">Home</a></li>
 						<li><a href="#">Services</a></li>
 						<li><a href="#">Re-Agents</a></li>
-						<li><a href="#about">About Us</a></li>
+						<li><a  onclick="window.popupPath='pages/about.html';document.location.hash='popup'">About Us</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="pages/form.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="pages/form.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a onclick="window.popupPath='pages/form.html';document.location.hash='popup'"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a onclick="window.popupPath='pages/form.html';document.location.hash='popup'" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
         </div>
       </div>
