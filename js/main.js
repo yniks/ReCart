@@ -1,10 +1,10 @@
-async function timer(ms)
+async function timer(s)
 {
   return new Promise((res,rej)=>
   {
       setTimeout(() => {
           res()
-      }, ms);
+      }, 1000*s*Math.random());
   })
 }
 async function showSearched(value)
@@ -14,7 +14,7 @@ async function showSearched(value)
     console.log(value)
     document.location.hash='loader'
     resp=await request('./1234?search='+value);
-    //await timer(1)
+    await timer(2)
     document.location.hash='listView'
 }
 async function init()
@@ -150,8 +150,8 @@ async function init()
 						<li><a href="#about">About Us</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="./signup.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="pages/form.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="pages/form.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
         </div>
       </div>

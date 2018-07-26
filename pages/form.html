@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>ReCart</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	<style>
+	.input100
+	{
+		background: #e3dedefa;
+	}
+	.new
+	{
+		background: #e3dedefa;
+	}
+	</style>
+
+
+	<div class="container-contact100" style="background-image: url('images/bg-01.jpg');">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					Register Here
+				</span>
+
+				<div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">Tell us your name *</span>
+					<input class="input100" type="text" name="name" placeholder="Enter your name">
+				</div>
+
+				<div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<span class="label-input100">Enter your email *</span>
+					<input class="input100" type="text" name="email" placeholder="Enter your email">
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid Number is required">
+					<span class="label-input100">Phone Number *</span>
+					<input class="input100" type="text" name="phone" maxlength="10" placeholder="Enter Your Phone Number">
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Message is required">
+					<span class="label-input100">Are you a ? </span>
+					<select class="new" name="who" required="" onchange="yesnoCheck(this);">
+						<option value="" disabled selected="" >Select</option>
+						<option value="industry">Industry</option>
+						<option value="ga">Green Agent</option>
+						<option value="smartbin">Smart Bin Owner</option>
+						
+					</select>
+				</div>
+				 <div id="ifYes" style="display: none;">
+   					<label for="Organisation">Organisation Name *</label><input class="input100" type="text" id="branch" name="oname" placeholder="Organisation Name" required=""> <br>
+   					<label for="Address">Address *</label><input class="input100" type="text" name="addr" id="year" placeholder="Address" required="">
+					   <br><label for="designation">You Belong To? *</label>
+					   <select class="new" name="who" required="" onchange="yesnoCheck(this);">
+						   <option value="" disabled selected="" >Select</option>
+						   <option value="industry">Recycle Industry</option>
+						   <option value="organic">Organic Industry</option>
+						   <option value="reuse">Reuse Industry</option>
+						   
+					   </select>
+				</div >
+    			<div id="ifYes1" style="display: none;">
+					<label for="Address">Address *</label><input class="input100" type="text" name="addr" id="year" placeholder="Address" required=""><br>
+					<label for="Aadhar Number">Aadhar Number *</label><input class="input100" type="text" name="aadhar" id="year" placeholder="Aadhar Number" required=""><br>
+				</div >
+				<div id="ifYes2" style="display: none;">
+					<label for="Address">Smart Bin Id *</label><input class="input100" type="text" name="sbin" id="year" placeholder="Smart Bin Id" required=""><br>
+					<label for="Aadhar Number">Aadhar Number *</label><input class="input100" type="text" name="aadhar" id="year" placeholder="Aadhar Number" required=""><br>
+    			</div >
+
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn">
+							Submit
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<script>
+    function yesnoCheck(that) {
+        if (that.value == "industry") {
+            document.getElementById("ifYes").style.display = "block";
+
+        }  else {
+        	document.getElementById("ifYes").style.display = "none";
+        }
+
+        if (that.value == "ga")  {
+            document.getElementById("ifYes1").style.display = "block";
+        } else {
+        	document.getElementById("ifYes1").style.display = "none";
+		}
+		if (that.value == "smartbin")  {
+            document.getElementById("ifYes2").style.display = "block";
+        } else {
+        	document.getElementById("ifYes2").style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
