@@ -156,16 +156,16 @@ var items={
 }
  function request(event)
 {
-   console.log('requested',event.request.url);
+  // console.log('requested',event.request.url);
    var handle= async function(){
         var url=new URL(event.request.url)
      //   console.log(event.request.url.search('1234'))
         if(event.request.url.search('1234')==-1)return  caches.open('re-cart').then(function(cache) {
-            console.log(cache)
+        //    console.log(cache)
             return cache.match(event.request).then(function (response) {
-                console.log('cache response',response)
+              //  console.log('cache response',response)
                 var r=response? response:fetch(event.request).then(function(response) {
-                  console.log('got from server')
+                //  console.log('got from server')
                 cache.put(event.request, response.clone());
                 return response;
               }).catch(e=>console.log('falded to fetch'));
@@ -178,7 +178,7 @@ var items={
         {
             obj[param[0]]=param[1]
         }
-        console.log('hereee',obj)
+        //console.log('hereee',obj)
         event.respondWith(new Response(JSON.stringify(getitem(obj))))
     }
     event.waitUntil(handle())
@@ -203,7 +203,8 @@ self.addEventListener('install', function(event) {
             './js/main.js',
             './pages/about.html','./index.html'
         ]
-      ).then(e=>console.log('caching successfull')).catch(e=>console.log(e));
+      ).then(e=>console.log('caching successfull')
+    ).catch(e=>console.log(e));
     })
   );
 });
