@@ -206,7 +206,9 @@ self.addEventListener('install', function(event) {
             './css/style.css',
             './js/jquery-3.3.1.min.js',
             './js/main.js',
-            './pages/about.html','./index.html'
+            './pages/about.html',
+            './pages/form.html',
+            './index.html'
         ]
       ).then(e=>console.log('caching successfull')
     ).catch(e=>console.log(e));

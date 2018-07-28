@@ -77,9 +77,22 @@
 	{
          window.request=async function(req)
          {
-             var res=await fetch(req)
-             if(req.search!=-1)res=res.json()
-             return res
+             try
+             {
+                var res=await fetch(req)
+                if(req.search!=-1)res=res.json()
+                return res
+             }
+             catch(e)
+             {
+                 return new Promise((res,rej)=>
+                {
+                    console.log('Fetch Error:',e,'trying again');
+                    setTimeout(async () => {
+                            res(await request(req) );
+                    }, 1000);
+                })
+             }
          }
 		var ini=await init()
 		console.log(await ini)
