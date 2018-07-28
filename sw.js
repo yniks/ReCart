@@ -161,15 +161,14 @@ var items={
         var url=new URL(event.request.url)
      //   console.log(event.request.url.search('1234'))
         if(event.request.url.search('1234')==-1)return  caches.open('re-cart').then(function(cache) {
-        //    console.log(cache)
+            //console.log(cache)
             return cache.match(event.request).then(function (response) {
-              //  console.log('cache response',response)
-                var r=response? response:fetch(event.request).then(function(response) {
-                //  console.log('got from server')
+               console.log('cache response',response);
+               return response || fetch(event.request).then(function(response) {
+                   console.log('got from server',response)
                 cache.put(event.request, response.clone());
                 return response;
               }).catch(e=>console.log('falded to fetch'));
-              return r;
             });
           })
         var params=url.searchParams

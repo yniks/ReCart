@@ -1,0 +1,8 @@
+{
+  "name": "ReCart-Waste to Industry",
+  "short_name": "ReCart",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "A green Initiative intended to smoothen Home to Industry journey of Waste."
+}
