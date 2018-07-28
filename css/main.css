@@ -2,6 +2,12 @@ html
 {
     zoom:1.1
 }
+img
+{
+   background: url(../images/loader.svg);
+   background-repeat: no-repeat;
+   background-position: center;
+}
 #popupWindow
 {
     position: fixed;
