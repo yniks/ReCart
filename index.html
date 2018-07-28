@@ -48,6 +48,27 @@
 <script src='./js/main.js'></script>
 <script>
       window.mainBox=document.querySelector('#mainBox');
+    var noti=document.createElement('div');
+        noti.setAttribute('style',`
+            position:'fixed';
+            right:10px;
+            top:20px;
+            min-width:60px;
+            min-height:10px;
+            background:rgba(0,0,0,0.1);
+        `)
+    function notify(html)
+    {   
+        noti.style.opacity=1;
+        var n=document.createElement('div');
+        n.innerHTML=html;
+        noti.appendChild(n);
+        setTimeout(()=>{
+            n.remove();
+            if(!noti.children.length)noti.style.opacity=1;
+        })
+    }
+    document.body.appendChild(noti)
 	if(!navigator)alert('non Supported Browser!')
 	else navigator.serviceWorker.register('./sw.js');
 	async function start()
