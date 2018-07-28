@@ -160,27 +160,33 @@ var items={
    var handle= async function(){
         var url=new URL(event.request.url)
      //   console.log(event.request.url.search('1234'))
-        if(event.request.url.search('1234')==-1)return  caches.open('re-cart').then(function(cache) {
+        if(event.request.url.search('1234')==-1)return caches.open('re-cart').then(function(cache) {
             //console.log(cache)
-            return cache.match(event.request).then(function (response) {
+           return cache.match(event.request.clone()).then(function (response) {
                console.log('cache response',response);
-               return response || fetch(event.request).then(function(response) {
+                if(response)
+                 return response
+                else return fetch(event.request).then(function(response) {
                    console.log('got from server',response)
                 cache.put(event.request, response.clone());
-                return response;
+                 return response;
               }).catch(e=>console.log('falded to fetch'));
             });
           })
-        var params=url.searchParams
-        var obj={}
-        for(let param of params.entries())
-        {
-            obj[param[0]]=param[1]
-        }
-        //console.log('hereee',obj)
-        event.respondWith(new Response(JSON.stringify(getitem(obj))))
+          else
+          {
+            var params=url.searchParams
+            var obj={}
+            for(let param of params.entries())
+            {
+                obj[param[0]]=param[1]
+            }
+            //console.log('hereee',obj)
+            return new Response(JSON.stringify(getitem(obj)))
+          }
+       
     }
-    event.waitUntil(handle())
+    event.waitUntil( event.respondWith( handle()))
 }
 self.addEventListener('install', function(event) {
   event.waitUntil(
