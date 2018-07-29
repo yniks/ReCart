@@ -19,6 +19,10 @@ body::-webkit-scrollbar-thumb {
         background: rgba(0,0,0,0.2);
         margin: 2px;
     }
+    .contact:visited,.contact:active
+    {
+        background:red;
+    }
     @keyframes rotate-forever
     {
         from
@@ -51,7 +55,8 @@ body::-webkit-scrollbar-thumb {
     }
     .rot-sys:nth-child(odd)
     {
-        box-shadow:rgba(1, 158, 1, 0.59) 0px 0px 98px 54px
+        box-shadow:rgba(1, 158, 1, 0.59) 0px 0px 98px 54px;
+        cursor:pointer;
     }
     .rot-sys .name
     {
@@ -135,13 +140,13 @@ body::-webkit-scrollbar-thumb {
     <div class=system>
        
 <div class=rot-sys >
-    <span>
+    <span tabindex=2 onlick=document.location.hash='swapnil'>
         <div><img src='../images/s.jpg'></div>
         <div class=name>Swapnil</div>
         </span>
 </div>
 <div class=rot-sys ></div>
-<div class=rot-sys ><span>
+<div class=rot-sys ><span tabindex=2 onlick=document.location.hash='ehraz'>
         <div><img src='../images/e.jpg'></div>
         <div class=name>Ehraz</div>
         </span></div>
@@ -149,12 +154,12 @@ body::-webkit-scrollbar-thumb {
 </div>
 <div class=rot-sys id=centre><h1>Team</h1></div>
 <div class=rot-sys ></div>
-<div class=rot-sys ><span>
+<div class=rot-sys ><span tabindex=2 onlick=document.location.hash='nikhilesh'>
         <div><img src='../images/me.jpg'></div>
         <div class=name>Nikhilesh</div>
         </span></div>
 <div class=rot-sys ></div>
-<div class=rot-sys ><span>
+<div class=rot-sys ><span tabindex=2 onlick=document.location.hash='priyanshu'>
         <div><img src='../images/p.jpeg'></div>
         <div class=name>Priyanshu</div>
         </span></div>
@@ -171,29 +176,26 @@ body::-webkit-scrollbar-thumb {
 
 <h2>About Us</h2>
 <p>We are third-semester sophomores pursuing Bachelor of Technology in Computer Science and Engineering at Noida Institute of Engineering and Technology, Greater Noida.
-        <div class=contact>
+        <div class=contact id=ehraz>
             <div class=contact_name>Ehraz Hassan</div>
-            <div class=contact_number>+12345678</div>
+            <div class=contact_number>+91 8009934535</div>
             <div class =contact_email>ehrazhassan@email.com</div>
         </div>
-        <div class=contact>
+        <div class=contact id=priyanshu>
             <div class=contact_name>Priyanshu Singh</div>
-            <div class=contact_number>+98765432</div>
+            <div class=contact_number>+91 9760460463</div>
             <div class =contact_email>priyanshu@email.com</div>
         </div>
-        <div class=contact>
+        <div class=contact id=swapnil>
             <div class=contact_name>Swapnil Tiwari</div>
-            <div class=contact_number>+123456789</div>
-            <div class =contact_email>swapniltiwari@gmail.com</div>
+            <div class=contact_number>+91 8707647260</div>
+            <div class =contact_email>swapniltiwari@outlook.com</div>
         </div>
-        <div class=contact>
+        <div class=contact id=nikhilesh>
             <div class=contact_name>Nikhilesh Yadav</div>
-            <div class=contact_number>+123456789</div>
+            <div class=contact_number>+91 8505905869</div>
             <div class =contact_email>nikhileshofficial@gmail.com</div>
         </div>
-    
-    <br>Contact Us:8585905869
-    <br>Email us :<a href=nikhileshofficial@gmail.com>nikhileshofficial@gmail.com</a>
 </p>    </div>
     
     <script>

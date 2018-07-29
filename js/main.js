@@ -60,6 +60,7 @@ async function init()
    {
      popup.shown=true
       iframe.src=src;
+      popup.state=document.location.href;
       mainBox.style.filter='blur(3px)';
       let fn=mainBox.onclick
       mainBox.onclick=function()
@@ -76,7 +77,7 @@ async function init()
      mainBox.style.filter=''
    }
    
-   cross.onclick=()=>{history.back()}
+   cross.onclick=()=>{document.location=popup.state}
    window.loader=document.createElement('div');
    loader.setAttribute('style',`margin: auto;width: 100px;height: 100px;`);
    loader.innerHTML=`<img src="images/loader.svg"> `
