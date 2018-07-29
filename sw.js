@@ -197,6 +197,7 @@ self.addEventListener('install', function(event) {
             './images/p.jpeg',
             './images/s.jpg',
             './images/e.jpg',
+            './images/me.jpg',
             './images/glogo.jpg',
             './images/greenlogo.png',
             './images/logo.jpg',
