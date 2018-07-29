@@ -60,7 +60,6 @@ async function init()
    {
      popup.shown=true
       iframe.src=src;
-      popup.state=document.location.href;
       mainBox.style.filter='blur(3px)';
       let fn=mainBox.onclick
       mainBox.onclick=function()
