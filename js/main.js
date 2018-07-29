@@ -77,7 +77,7 @@ async function init()
      mainBox.style.filter=''
    }
    
-   cross.onclick=()=>{document.location=popup.state}
+   cross.onclick=()=>{history.back()}
    window.loader=document.createElement('div');
    loader.setAttribute('style',`margin: auto;width: 100px;height: 100px;`);
    loader.innerHTML=`<img src="images/loader.svg"> `
