@@ -163,14 +163,14 @@ var items={
         if(event.request.url.search('1234')==-1)return caches.open('re-cart').then(function(cache) {
             //console.log(cache)
            return cache.match(event.request.clone()).then(function (response) {
-               console.log('cache response',response);
+               //console.log('cache response',response);
                 if(response)
                  return response
                 else return fetch(event.request).then(function(response) {
-                   console.log('got from server',response)
+                   //console.log('got from server',response)
                 cache.put(event.request, response.clone());
                  return response;
-              }).catch(e=>console.log('falded to fetch'));
+              }).catch(e=>//console.log('falded to fetch'));
             });
           })
           else
@@ -219,5 +219,5 @@ self.addEventListener('install', function(event) {
   self.addEventListener('activate', function(event) {
     event.waitUntil(self.clients.claim());
   });
-self.skipWaiting()
 self.addEventListener('fetch',request)
+self.skipWaiting()
