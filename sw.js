@@ -189,33 +189,36 @@ var items={
     event.waitUntil( event.respondWith( handle()))
 }
 self.addEventListener('install', function(event) {
-  event.waitUntil(
-    caches.open('re-cart').then(function(cache) {
-      return cache.addAll(
-        [
-            './images/download.jpeg',
-            './images/p.jpeg',
-            './images/s.jpg',
-            './images/e.jpg',
-            './images/me.jpg',
-            './images/glogo.jpg',
-            './images/greenlogo.png',
-            './images/logo.jpg',
-            './images/not_available.jpg',
-            './css/main.css',
-            './css/secondary.css',
-            './css/style.css',
-            './js/jquery-3.3.1.min.js',
-            './js/main.js',
-            './pages/about.html',
-            './pages/form.html',
-            './index.html'
-        ]
-      ).then(e=>console.log('caching successfull')
-    ).catch(e=>console.log(e));
-    })
-  );
+  event.waitUntil(loadFIles);
 });
+function loadFIles()
+{
+    
+    caches.open('re-cart').then(function(cache) {
+        return cache.addAll(
+          [
+              './images/download.jpeg',
+              './images/p.jpeg',
+              './images/s.jpg',
+              './images/e.jpg',
+              './images/me.jpg',
+              './images/glogo.jpg',
+              './images/greenlogo.png',
+              './images/logo.jpg',
+              './images/not_available.jpg',
+              './css/main.css',
+              './css/secondary.css',
+              './css/style.css',
+              './js/jquery-3.3.1.min.js',
+              './js/main.js',
+              './pages/about.html',
+              './pages/form.html',
+              './index.html'
+          ]
+        ).then(e=>console.log('caching successfull')
+      ).catch(e=>console.log(e));
+      })
+}
   self.addEventListener('activate', function(event) {
     event.waitUntil(self.clients.claim());
   });
